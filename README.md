@@ -2,6 +2,10 @@
 
 A privacy-friendly README generator for new open-source maintainers. Fill in a few project details, preview the Markdown live, then copy or download a bilingual `README.md`.
 
+![README Studio preview](public/og.png)
+
+**[Try the live app](https://readme-studio-oss.pangxueyuan2.chatgpt.site)**
+
 ## Why this exists
 
 Many useful projects are difficult to try because their first page does not explain the problem, setup, or contribution path. README Studio provides a clear starting structure without accounts, analytics, or server-side processing.
@@ -20,7 +24,7 @@ Many useful projects are difficult to try because their first page does not expl
 Requirements: Node.js 22.13 or newer.
 
 ```bash
-git clone https://github.com/YOUR_NAME/oss-readme-studio.git
+git clone https://github.com/pangxueyuan2-creator/oss-readme-studio.git
 cd oss-readme-studio
 npm install
 npm run dev
