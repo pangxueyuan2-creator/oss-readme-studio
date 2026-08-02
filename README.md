@@ -1,13 +1,14 @@
 # README Studio
 
 [![CI](https://github.com/pangxueyuan2-creator/oss-readme-studio/actions/workflows/ci.yml/badge.svg)](https://github.com/pangxueyuan2-creator/oss-readme-studio/actions/workflows/ci.yml)
+[![Public demo](https://github.com/pangxueyuan2-creator/oss-readme-studio/actions/workflows/pages.yml/badge.svg)](https://github.com/pangxueyuan2-creator/oss-readme-studio/actions/workflows/pages.yml)
 [![MIT License](https://img.shields.io/badge/license-MIT-214d38.svg)](LICENSE)
 
 A privacy-friendly README generator for new open-source maintainers. Fill in a few project details, preview the Markdown live, then copy or download a bilingual `README.md`.
 
 ![README Studio preview](public/og.png)
 
-**[Try the live app](https://readme-studio-oss.pangxueyuan2.chatgpt.site)**
+**[Try the public demo](https://pangxueyuan2-creator.github.io/oss-readme-studio/)** — no account or sign-in required.
 
 ## Why this exists
 
@@ -16,6 +17,7 @@ Many useful projects are difficult to try because their first page does not expl
 ## Features
 
 - Live Markdown generation
+- Focused presets for general projects, CLI tools, web apps, libraries, and data projects
 - Optional English + Chinese output
 - Copy and download actions
 - Responsive, keyboard-friendly interface
@@ -39,6 +41,7 @@ Open `http://localhost:3000`.
 
 ```bash
 npm run build
+npm run build:pages
 ```
 
 ## Test
@@ -52,11 +55,13 @@ The test suite covers README generation, bilingual output, fallback content, ser
 
 ## Project status
 
-This is an early, working release. Planned improvements include more README templates, accessible Markdown rendering, and import/export presets. See [ROADMAP.md](ROADMAP.md) and the issue tracker for current work.
+This is an early, working release. The project has a public, independently deployable demo and a shared generator covered by automated tests. Planned improvements include accessible Markdown rendering and import/export presets. See [ROADMAP.md](ROADMAP.md), [project purpose and impact](docs/PROJECT_IMPACT.md), and the issue tracker for current work.
 
 ## Contributing
 
 Bug reports, documentation improvements, translations, and pull requests are welcome. Read [CONTRIBUTING.md](CONTRIBUTING.md) before contributing.
+
+Project ownership and decision-making are documented in [MAINTAINERS.md](MAINTAINERS.md).
 
 ## Security and privacy
 

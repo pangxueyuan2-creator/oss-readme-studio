@@ -13,7 +13,7 @@
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-geist-sans), Arial, sans-serif; }
-button, input, textarea { font: inherit; }
+button, input, textarea, select { font: inherit; }
 button, a { -webkit-tap-highlight-color: transparent; }
 
 main { min-height: 100vh; }
@@ -40,6 +40,11 @@ h1 em { color: var(--green); font-family: Georgia, serif; font-weight: 400; }
 h2 { margin: 0; font-size: clamp(21px, 2vw, 29px); letter-spacing: -.045em; }
 .text-button { border: 0; background: transparent; cursor: pointer; color: var(--muted); font-size: 12px; text-decoration: underline; text-underline-offset: 3px; }
 .text-button:hover { color: var(--ink); }
+.template-picker { margin: 28px 28px 0; padding: 18px; background: #eef3e5; border: 1px solid #c5ccb7; }
+.template-picker label { display: block; margin-bottom: 8px; font-family: var(--font-geist-mono), monospace; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .09em; }
+.template-picker select { width: 100%; border: 1px solid var(--line); color: var(--ink); background: #fffef9; padding: 11px 12px; outline: none; cursor: pointer; }
+.template-picker select:focus { border-color: var(--green); box-shadow: 0 0 0 3px rgba(33,77,56,.1); }
+.template-picker p { margin: 8px 0 0; color: var(--muted); font-size: 11px; line-height: 1.5; }
 .field-grid { padding: 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 21px 16px; }
 .field-grid label { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
 .field-grid .wide { grid-column: 1 / -1; }
@@ -92,6 +97,7 @@ footer { min-height: 100px; padding: 30px clamp(22px, 5vw, 76px); border-top: 1p
   .workspace { padding: 10px; }
   .panel-heading { min-height: 76px; padding: 20px; }
   .field-grid { padding: 20px; grid-template-columns: 1fr; }
+  .template-picker { margin: 20px 20px 0; }
   .field-grid .wide { grid-column: auto; }
   .toggle-row { margin: 0 20px 20px; }
   pre { min-height: 480px; padding: 22px 20px; }

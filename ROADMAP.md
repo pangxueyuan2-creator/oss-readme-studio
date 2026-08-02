@@ -11,7 +11,9 @@ README Studio is maintained in small, testable releases. Priorities are based on
 
 ## Next — 0.3
 
-- [ ] Add templates for CLI tools, libraries, web apps, and data projects.
+- [x] Add templates for CLI tools, libraries, web apps, and data projects.
+- [x] Publish a public demo that does not require an account.
+- [x] Document project impact and maintainer responsibilities.
 - [ ] Add accessible rendered-Markdown preview alongside the source view.
 - [ ] Add import and export for reusable local presets.
 

@@ -9,6 +9,14 @@ export type ProjectForm = {
   repo: string;
 };
 
+export type TemplateId = "standard" | "cli" | "web-app" | "library" | "data";
+
+export type ReadmeTemplate = {
+  label: string;
+  description: string;
+  form: ProjectForm;
+};
+
 export const starter: ProjectForm = {
   name: "My Open Source Project",
   tagline: "A short sentence that explains what your project does.",
@@ -20,6 +28,74 @@ export const starter: ProjectForm = {
   author: "Your Name",
   repo: "https://github.com/your-name/your-project",
 };
+
+export const templates: Record<TemplateId, ReadmeTemplate> = {
+  standard: {
+    label: "General project",
+    description: "A balanced starting point for most open-source projects.",
+    form: starter,
+  },
+  cli: {
+    label: "CLI tool",
+    description: "Highlights installation, commands, and terminal-first usage.",
+    form: {
+      name: "My CLI Tool",
+      tagline: "A focused command-line tool that makes a repetitive task easier.",
+      problem: "Explain the workflow this command simplifies and who benefits from it.",
+      features: "Quick installation\nHelpful command output\nWorks in scripts and CI",
+      install: "npm install --global my-cli-tool",
+      usage: "my-cli-tool --help\nmy-cli-tool run ./input",
+      author: "Your Name",
+      repo: "https://github.com/your-name/my-cli-tool",
+    },
+  },
+  "web-app": {
+    label: "Web app",
+    description: "Explains local setup, browser usage, privacy, and deployment.",
+    form: {
+      name: "My Web App",
+      tagline: "A small web app that solves one problem clearly.",
+      problem: "Describe the user need, the intended audience, and why a web interface helps.",
+      features: "Responsive interface\nAccessible keyboard navigation\nPrivacy-friendly defaults",
+      install: "git clone https://github.com/your-name/my-web-app.git\ncd my-web-app\nnpm install",
+      usage: "npm run dev",
+      author: "Your Name",
+      repo: "https://github.com/your-name/my-web-app",
+    },
+  },
+  library: {
+    label: "Library",
+    description: "Starts with installation, a small API example, and contribution guidance.",
+    form: {
+      name: "My Library",
+      tagline: "A small library with a clear, stable API.",
+      problem: "Explain which development task this library handles and when to use it.",
+      features: "Typed public API\nSmall dependency footprint\nDocumented examples",
+      install: "npm install my-library",
+      usage: "import { createThing } from \"my-library\";\n\nconst thing = createThing();",
+      author: "Your Name",
+      repo: "https://github.com/your-name/my-library",
+    },
+  },
+  data: {
+    label: "Data project",
+    description: "Makes the data source, reproducibility, and output workflow visible.",
+    form: {
+      name: "My Data Project",
+      tagline: "A reproducible workflow for exploring and transforming an open dataset.",
+      problem: "Describe the dataset, the question being explored, and who can reuse the results.",
+      features: "Documented data sources\nReproducible processing\nExportable results",
+      install: "git clone https://github.com/your-name/my-data-project.git\ncd my-data-project\npython -m pip install -r requirements.txt",
+      usage: "python scripts/build_dataset.py\npython scripts/analyze.py",
+      author: "Your Name",
+      repo: "https://github.com/your-name/my-data-project",
+    },
+  },
+};
+
+export function getTemplate(id: TemplateId): ProjectForm {
+  return { ...templates[id].form };
+}
 
 export function cleanLines(value: string) {
   return value
