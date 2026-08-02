@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { cleanLines, makeReadme, starter } from "../lib/readme.ts";
+import { cleanLines, getTemplate, makeReadme, starter, templates } from "../lib/readme.ts";
 
 test("cleanLines trims entries and removes blank lines", () => {
   assert.deepEqual(cleanLines("  Fast  \n\n Private \n "), ["Fast", "Private"]);
@@ -42,4 +42,18 @@ test("uses safe fallbacks for empty optional content", () => {
   assert.match(output, /- Add your first feature/);
   assert.match(output, /Project contributors/);
   assert.doesNotMatch(output, /View repository/);
+});
+
+test("provides focused templates for common open-source project types", () => {
+  assert.deepEqual(Object.keys(templates), ["standard", "cli", "web-app", "library", "data"]);
+  assert.match(getTemplate("cli").usage, /--help/);
+  assert.match(getTemplate("web-app").features, /Accessible/);
+  assert.match(getTemplate("library").usage, /import/);
+  assert.match(getTemplate("data").install, /requirements\.txt/);
+});
+
+test("returns a fresh editable copy of a template", () => {
+  const first = getTemplate("cli");
+  first.name = "Changed locally";
+  assert.equal(getTemplate("cli").name, "My CLI Tool");
 });

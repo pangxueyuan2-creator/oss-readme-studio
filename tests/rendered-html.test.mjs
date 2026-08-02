@@ -23,6 +23,8 @@ test("server-renders the finished README Studio experience", async () => {
   assert.match(html, /<title>README Studio/);
   assert.match(html, /Turn a rough idea into a/);
   assert.match(html, /Project details/);
+  assert.match(html, /Project template/);
+  assert.match(html, /CLI tool/);
   assert.match(html, /Live preview/);
   assert.match(html, /Copy Markdown/);
   assert.doesNotMatch(html, /codex-preview|SkeletonPreview|Your site is taking shape/);
@@ -38,6 +40,6 @@ test("ships project metadata and the social preview asset", async () => {
 
   assert.match(layout, /README Studio — Open source, clearly explained/);
   assert.match(layout, /summary_large_image/);
-  assert.match(page, /from "\.\.\/lib\/readme"/);
+  assert.match(page, /ReadmeStudio/);
   assert.doesNotMatch(packageJson, /react-loading-skeleton/);
 });

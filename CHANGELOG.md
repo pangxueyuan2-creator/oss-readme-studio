@@ -4,6 +4,19 @@ All notable changes are documented here.
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-08-02
+
+### Added
+
+- Focused templates for CLI tools, web apps, libraries, and data projects.
+- A public GitHub Pages build that does not require an account.
+- Maintainer responsibilities and an honest project-impact statement.
+- Tests that cover template selection and isolation.
+
+### Changed
+
+- Shared the same interactive application component between the main deployment and public demo.
+
 ## [0.2.0] - 2026-08-02
 
 ### Added
@@ -24,6 +37,7 @@ All notable changes are documented here.
 - First working README Studio release.
 - Live generation, bilingual output, copying, and Markdown download.
 
-[Unreleased]: https://github.com/pangxueyuan2-creator/oss-readme-studio/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/pangxueyuan2-creator/oss-readme-studio/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/pangxueyuan2-creator/oss-readme-studio/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/pangxueyuan2-creator/oss-readme-studio/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/pangxueyuan2-creator/oss-readme-studio/releases/tag/v0.1.0
