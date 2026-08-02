@@ -68,6 +68,16 @@ input:focus, textarea:focus { border-color: var(--green); box-shadow: 0 0 0 3px 
 .preview-panel .step { color: var(--acid); border-color: #4a574f; }
 .file-pill { font-family: var(--font-geist-mono), monospace; font-size: 10px; color: #9eaaa3; border: 1px solid #4a574f; padding: 7px 9px; }
 pre { margin: 0; padding: 30px; min-height: 610px; max-height: 810px; overflow: auto; white-space: pre-wrap; overflow-wrap: anywhere; background: #101914; color: #ced8d1; font: 11px/1.72 var(--font-geist-mono), monospace; scrollbar-color: #4a574f transparent; }
+.audit-panel { padding: 22px 28px; border-top: 1px solid #344039; background: #152019; }
+.audit-score { display: flex; align-items: center; gap: 13px; }
+.audit-score > span { color: var(--acid); font: 700 34px/1 var(--font-geist-mono), monospace; }
+.audit-score div { display: flex; flex-direction: column; gap: 2px; }
+.audit-score strong { font-size: 12px; }
+.audit-score small { color: #91a097; font-size: 10px; }
+.audit-panel ul { margin: 17px 0 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 14px; list-style: none; }
+.audit-panel li { display: flex; gap: 7px; align-items: center; color: #9eaaa3; font-size: 10px; }
+.audit-panel li.passed span:first-child { color: var(--acid); }
+.audit-panel li.missing span:first-child { color: #ffb36b; }
 .actions { margin-top: auto; padding: 22px 28px; display: flex; gap: 10px; border-top: 1px solid #344039; }
 .actions button { min-height: 45px; padding: 0 19px; border: 1px solid var(--acid); cursor: pointer; font-size: 12px; font-weight: 700; transition: transform .15s, background .15s; }
 .actions button:active { transform: translateY(1px); }
@@ -101,6 +111,8 @@ footer { min-height: 100px; padding: 30px clamp(22px, 5vw, 76px); border-top: 1p
   .field-grid .wide { grid-column: auto; }
   .toggle-row { margin: 0 20px 20px; }
   pre { min-height: 480px; padding: 22px 20px; }
+  .audit-panel { padding: 20px; }
+  .audit-panel ul { grid-template-columns: 1fr; }
   .actions { padding: 18px 20px; flex-direction: column; }
   .about { padding-top: 80px; padding-bottom: 80px; }
   footer { align-items: flex-start; flex-direction: column; gap: 12px; }

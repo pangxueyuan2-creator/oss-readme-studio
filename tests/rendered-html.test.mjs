@@ -26,14 +26,16 @@ test("server-renders the finished README Studio experience", async () => {
   assert.match(html, /Project template/);
   assert.match(html, /CLI tool/);
   assert.match(html, /Live preview/);
+  assert.match(html, /README readiness/);
   assert.match(html, /Copy Markdown/);
   assert.doesNotMatch(html, /codex-preview|SkeletonPreview|Your site is taking shape/);
 });
 
 test("ships project metadata and the social preview asset", async () => {
-  const [layout, page, packageJson] = await Promise.all([
+  const [layout, page, component, packageJson] = await Promise.all([
     readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../components/readme-studio.tsx", import.meta.url), "utf8"),
     readFile(new URL("../package.json", import.meta.url), "utf8"),
     access(new URL("../public/og.png", import.meta.url)),
   ]);
@@ -41,5 +43,6 @@ test("ships project metadata and the social preview asset", async () => {
   assert.match(layout, /README Studio — Open source, clearly explained/);
   assert.match(layout, /summary_large_image/);
   assert.match(page, /ReadmeStudio/);
+  assert.match(component, /analyzeReadme/);
   assert.doesNotMatch(packageJson, /react-loading-skeleton/);
 });

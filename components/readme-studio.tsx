@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { analyzeReadme } from "../lib/audit.mjs";
 import {
   getTemplate,
   makeReadme,
@@ -15,6 +16,7 @@ export function ReadmeStudio() {
   const [bilingual, setBilingual] = useState(true);
   const [copied, setCopied] = useState(false);
   const readme = useMemo(() => makeReadme(form, bilingual), [form, bilingual]);
+  const audit = useMemo(() => analyzeReadme(readme), [readme]);
 
   function update<K extends keyof ProjectForm>(key: K, value: ProjectForm[K]) {
     setForm((current) => ({ ...current, [key]: value }));
@@ -144,6 +146,20 @@ export function ReadmeStudio() {
             <span className="file-pill">README.md</span>
           </div>
           <pre aria-live="polite"><code>{readme}</code></pre>
+          <section className="audit-panel" aria-label="README readiness">
+            <div className="audit-score">
+              <span>{audit.score}</span>
+              <div><strong>README readiness</strong><small>out of {audit.maximumScore}</small></div>
+            </div>
+            <ul>
+              {audit.checks.map((check) => (
+                <li className={check.passed ? "passed" : "missing"} key={check.id}>
+                  <span aria-hidden="true">{check.passed ? "✓" : "○"}</span>
+                  <span>{check.label}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
           <div className="actions">
             <button className="primary" onClick={copyReadme}>{copied ? "Copied!" : "Copy Markdown"}</button>
             <button className="secondary" onClick={downloadReadme}>Download .md</button>

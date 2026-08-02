@@ -12,6 +12,8 @@ README Studio helps new open-source maintainers turn an unfinished project descr
 
 Documentation is often the first barrier between useful code and a contributor. README Studio focuses on that narrow gap: describing the problem, showing installation and usage, and making the contribution path visible. The generated Markdown stays editable and does not lock projects into a platform.
 
+The reusable audit and GitHub Action also let maintainers apply the same transparent checks in other repositories. The rules are deterministic and public, so projects can adopt, debate, or extend them without depending on an external service.
+
 ## Privacy boundary
 
 Project descriptions are processed entirely in the browser. The app has no analytics, database, account system, or server-side form submission. The public demo is built from the same shared generator module used by the main application.
