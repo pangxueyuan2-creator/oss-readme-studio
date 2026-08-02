@@ -1,5 +1,8 @@
 # README Studio
 
+[![CI](https://github.com/pangxueyuan2-creator/oss-readme-studio/actions/workflows/ci.yml/badge.svg)](https://github.com/pangxueyuan2-creator/oss-readme-studio/actions/workflows/ci.yml)
+[![MIT License](https://img.shields.io/badge/license-MIT-214d38.svg)](LICENSE)
+
 A privacy-friendly README generator for new open-source maintainers. Fill in a few project details, preview the Markdown live, then copy or download a bilingual `README.md`.
 
 ![README Studio preview](public/og.png)
@@ -38,9 +41,18 @@ Open `http://localhost:3000`.
 npm run build
 ```
 
+## Test
+
+```bash
+npm run lint
+npm test
+```
+
+The test suite covers README generation, bilingual output, fallback content, server rendering, metadata, and the social preview asset. GitHub Actions runs the same checks for every pull request and push to `main`.
+
 ## Project status
 
-This is an early, working release. Planned improvements include more README templates, accessible Markdown rendering, and import/export presets. See the issue tracker for current work.
+This is an early, working release. Planned improvements include more README templates, accessible Markdown rendering, and import/export presets. See [ROADMAP.md](ROADMAP.md) and the issue tracker for current work.
 
 ## Contributing
 
@@ -48,7 +60,7 @@ Bug reports, documentation improvements, translations, and pull requests are wel
 
 ## Security and privacy
 
-README Studio does not send form content to a backend. If you discover a security issue, avoid opening a public issue with exploit details; contact the maintainer privately through the GitHub profile listed on the repository.
+README Studio does not send form content to a backend. If you discover a security issue, follow [SECURITY.md](SECURITY.md) and use GitHub private vulnerability reporting.
 
 ## License
 

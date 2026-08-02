@@ -16,6 +16,8 @@ Thank you for helping make open-source documentation easier to start.
 3. Run `npm test` and `npm run lint`.
 4. Explain what changed, why it helps, and how you tested it.
 
+Automated checks must pass before a change is merged. New generator behavior should include a focused unit test.
+
 For larger features, open an issue first so the approach can be discussed before implementation.
 
 ## Community expectations
