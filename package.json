@@ -1,17 +1,21 @@
 {
   "name": "oss-readme-studio",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "private": false,
   "engines": {
     "node": ">=22.13.0"
+  },
+  "bin": {
+    "readme-studio-audit": "./bin/readme-audit.mjs"
   },
   "scripts": {
     "dev": "vinext dev",
     "build": "vinext build",
     "build:pages": "vite build --config vite.pages.config.ts",
+    "audit": "node bin/readme-audit.mjs README.md --minimum 90",
     "start": "vinext start",
     "test": "npm run build && node --experimental-strip-types --test tests/*.test.mjs",
-    "lint": "eslint . --ignore-pattern dist --ignore-pattern dist-pages --ignore-pattern .next",
+    "lint": "eslint . --ignore-pattern dist --ignore-pattern dist-pages --ignore-pattern .next --ignore-pattern work",
     "db:generate": "drizzle-kit generate"
   },
   "dependencies": {

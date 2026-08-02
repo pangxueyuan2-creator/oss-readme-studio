@@ -1,0 +1,22 @@
+name: README Studio Audit
+description: Check whether a README explains how to understand, use, and contribute to a project.
+author: pangxueyuan2-creator
+
+inputs:
+  minimum-score:
+    description: Minimum accepted README score from 0 to 100.
+    required: false
+    default: "70"
+
+runs:
+  using: composite
+  steps:
+    - name: Audit README
+      shell: bash
+      env:
+        INPUT_MINIMUM_SCORE: ${{ inputs.minimum-score }}
+      run: node "$GITHUB_ACTION_PATH/bin/readme-audit.mjs" README.md
+
+branding:
+  icon: book-open
+  color: green

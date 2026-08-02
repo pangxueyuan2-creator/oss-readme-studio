@@ -4,6 +4,16 @@ All notable changes are documented here.
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-08-02
+
+### Added
+
+- A deterministic README readiness audit in the web app.
+- A reusable GitHub Action and command-line audit entry point.
+- Simplified Chinese project documentation.
+- Dependabot configuration, a pull-request template, and a code of conduct.
+- Tests for complete, incomplete, and project README audits.
+
 ## [0.3.0] - 2026-08-02
 
 ### Added
@@ -37,7 +47,8 @@ All notable changes are documented here.
 - First working README Studio release.
 - Live generation, bilingual output, copying, and Markdown download.
 
-[Unreleased]: https://github.com/pangxueyuan2-creator/oss-readme-studio/compare/v0.3.0...HEAD
+[Unreleased]: https://github.com/pangxueyuan2-creator/oss-readme-studio/compare/v0.4.0...HEAD
+[0.4.0]: https://github.com/pangxueyuan2-creator/oss-readme-studio/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/pangxueyuan2-creator/oss-readme-studio/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/pangxueyuan2-creator/oss-readme-studio/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/pangxueyuan2-creator/oss-readme-studio/releases/tag/v0.1.0
