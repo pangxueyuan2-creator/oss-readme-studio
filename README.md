@@ -2,7 +2,7 @@
 
 English | [简体中文](README.zh-CN.md)
 
-A simple, privacy-friendly README generator for open-source projects. Fill in a few details, preview live, copy or download a bilingual README.
+Simple privacy-friendly README generator. Fill in a few fields, preview live, copy or download a bilingual README.
 
 **[Public demo](https://pangxueyuan2-creator.github.io/oss-readme-studio/)** — no account needed.
 
@@ -29,4 +29,4 @@ npm run dev
 
 ## Status
 
-Early working release. MIT License.
+Early working release. MIT.
