@@ -27,6 +27,14 @@ npm install
 npm run dev
 ```
 
+## Contributing
+
+Issues and pull requests are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## License
+
+[MIT](LICENSE)
+
 ## Status
 
-Early working release. MIT.
+Early working release.
