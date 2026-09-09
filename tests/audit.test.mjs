@@ -39,6 +39,17 @@ test("gives a complete README the maximum score", () => {
   assert.equal(result.checks.every((check) => check.passed), true);
 });
 
+test("recognizes common expanded section headings", () => {
+  const markdown = complete
+    .replace("## Installation", "## Installation & Setup")
+    .replace("## Contributing", "## Contributing Guidelines");
+  const result = analyzeReadme(markdown);
+
+  assert.equal(result.checks.find((check) => check.id === "installation")?.passed, true);
+  assert.equal(result.checks.find((check) => check.id === "contributing")?.passed, true);
+  assert.equal(result.score, 100);
+});
+
 test("reports specific missing content for an incomplete README", () => {
   const result = analyzeReadme("# Tiny\n");
   assert.equal(result.score, 10);
