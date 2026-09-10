@@ -50,6 +50,27 @@ test("recognizes common expanded section headings", () => {
   assert.equal(result.score, 100);
 });
 
+test("keeps section content that lives under nested subsections", () => {
+  const markdown = complete.replace(
+    "## Installation\n\n```bash\nnpm install\n```",
+    "## Installation\n\n### npm\n\n```bash\nnpm install example-project\n```",
+  );
+  const result = analyzeReadme(markdown);
+
+  assert.equal(result.checks.find((check) => check.id === "installation")?.passed, true);
+  assert.equal(result.score, 100);
+});
+
+test("does not count nested headings alone as section content", () => {
+  const markdown = complete.replace(
+    "## Installation\n\n```bash\nnpm install\n```",
+    "## Installation\n\n### Linux\n\n## Usage",
+  );
+  const result = analyzeReadme(markdown);
+
+  assert.equal(result.checks.find((check) => check.id === "installation")?.passed, false);
+});
+
 test("reports specific missing content for an incomplete README", () => {
   const result = analyzeReadme("# Tiny\n");
   assert.equal(result.score, 10);
