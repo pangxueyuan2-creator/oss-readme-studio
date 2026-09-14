@@ -15,6 +15,7 @@ import {
   type ProjectForm,
   type TemplateId,
 } from "../lib/readme";
+import { MarkdownPreview } from "./markdown-preview";
 
 type PresetMessage = {
   kind: "success" | "error";
@@ -219,7 +220,7 @@ export function ReadmeStudio() {
             </div>
             <span className="file-pill">README.md</span>
           </div>
-          <pre aria-live="polite"><code>{readme}</code></pre>
+          <MarkdownPreview markdown={readme} />
           <section className="audit-panel" aria-label="README readiness">
             <div className="audit-score">
               <span>{audit.score}</span>
