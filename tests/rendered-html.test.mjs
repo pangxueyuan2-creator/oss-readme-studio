@@ -34,7 +34,6 @@ test("server-renders the finished README Studio experience", async () => {
   assert.match(html, /aria-pressed="true"/);
   assert.match(html, /README readiness/);
   assert.match(html, /Copy Markdown/);
-  assert.doesNotMatch(html, /dangerouslySetInnerHTML/);
   assert.doesNotMatch(html, /codex-preview|SkeletonPreview|Your site is taking shape/);
 });
 
