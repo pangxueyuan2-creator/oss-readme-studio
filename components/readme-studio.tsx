@@ -146,31 +146,25 @@ export function ReadmeStudio() {
             <p>{templates[templateId].description}</p>
           </div>
 
-          <div className="preset-controls" aria-label="Local preset controls">
-            <div>
-              <strong>Local preset</strong>
-              <small>Save or restore these project details without an account.</small>
-            </div>
-            <div className="preset-actions">
-              <button type="button" className="secondary" onClick={exportPreset}>Save preset</button>
-              <button type="button" className="secondary" onClick={() => presetInput.current?.click()}>
-                Load preset
-              </button>
-              <input
-                ref={presetInput}
-                className="visually-hidden"
-                type="file"
-                accept="application/json,.json"
-                onChange={importPreset}
-                aria-label="Choose a README Studio preset file"
-              />
-            </div>
+          <div className="template-picker" aria-label="Local preset controls">
+            <strong>Local preset</strong>
+            <p>Save or restore these project details without an account or server storage.</p>
+            <button type="button" className="text-button" onClick={exportPreset}>Save preset</button>
+            <button type="button" className="text-button" onClick={() => presetInput.current?.click()}>
+              Load preset
+            </button>
+            <input
+              ref={presetInput}
+              hidden
+              type="file"
+              accept="application/json,.json"
+              onChange={importPreset}
+              aria-label="Choose a README Studio preset file"
+            />
+            {presetMessage ? (
+              <p className={presetMessage.kind} role="status">{presetMessage.text}</p>
+            ) : null}
           </div>
-          {presetMessage ? (
-            <p className={`preset-message ${presetMessage.kind}`} role="status">
-              {presetMessage.text}
-            </p>
-          ) : null}
 
           <div className="field-grid">
             <label className="wide">
