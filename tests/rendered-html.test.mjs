@@ -29,16 +29,20 @@ test("server-renders the finished README Studio experience", async () => {
   assert.match(html, /Save preset/);
   assert.match(html, /Load preset/);
   assert.match(html, /Live preview/);
+  assert.match(html, /Markdown source/);
+  assert.match(html, /Rendered preview/);
+  assert.match(html, /aria-pressed="true"/);
   assert.match(html, /README readiness/);
   assert.match(html, /Copy Markdown/);
   assert.doesNotMatch(html, /codex-preview|SkeletonPreview|Your site is taking shape/);
 });
 
 test("ships project metadata and the social preview asset", async () => {
-  const [layout, page, component, packageJson] = await Promise.all([
+  const [layout, page, component, preview, packageJson] = await Promise.all([
     readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../components/readme-studio.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../components/markdown-preview.tsx", import.meta.url), "utf8"),
     readFile(new URL("../package.json", import.meta.url), "utf8"),
     access(new URL("../public/og.png", import.meta.url)),
   ]);
@@ -49,5 +53,8 @@ test("ships project metadata and the social preview asset", async () => {
   assert.match(component, /analyzeReadme/);
   assert.match(component, /serializePreset/);
   assert.match(component, /parsePreset/);
+  assert.match(component, /MarkdownPreview/);
+  assert.match(preview, /parseMarkdownPreview/);
+  assert.doesNotMatch(preview, /dangerouslySetInnerHTML/);
   assert.doesNotMatch(packageJson, /react-loading-skeleton/);
 });
