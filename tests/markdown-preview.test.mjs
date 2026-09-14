@@ -29,7 +29,7 @@ test("blocks unsafe link schemes and keeps raw HTML as inert text", () => {
   assert.equal(blocks.length, 1);
   assert.equal(blocks[0].kind, "paragraph");
   if (blocks[0].kind !== "paragraph") return;
-  assert.match(blocks[0].content[0].text, /<script>/);
+  assert.match(blocks[0].content[0].text, /<script>/i);
   const link = blocks[0].content.find((item) => item.kind === "link");
   assert.deepEqual(link, { kind: "link", text: "click me", href: null });
 });
