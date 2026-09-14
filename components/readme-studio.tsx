@@ -1,7 +1,13 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState, type ChangeEvent } from "react";
 import { analyzeReadme } from "../lib/audit.mjs";
+import {
+  MAX_PRESET_BYTES,
+  PresetError,
+  parsePreset,
+  serializePreset,
+} from "../lib/preset";
 import {
   getTemplate,
   makeReadme,
@@ -10,11 +16,18 @@ import {
   type TemplateId,
 } from "../lib/readme";
 
+type PresetMessage = {
+  kind: "success" | "error";
+  text: string;
+};
+
 export function ReadmeStudio() {
   const [templateId, setTemplateId] = useState<TemplateId>("standard");
   const [form, setForm] = useState<ProjectForm>(() => getTemplate("standard"));
   const [bilingual, setBilingual] = useState(true);
   const [copied, setCopied] = useState(false);
+  const [presetMessage, setPresetMessage] = useState<PresetMessage | null>(null);
+  const presetInput = useRef<HTMLInputElement>(null);
   const readme = useMemo(() => makeReadme(form, bilingual), [form, bilingual]);
   const audit = useMemo(() => analyzeReadme(readme), [readme]);
 
@@ -26,6 +39,7 @@ export function ReadmeStudio() {
     setTemplateId(value);
     setForm(getTemplate(value));
     setCopied(false);
+    setPresetMessage(null);
   }
 
   async function copyReadme() {
@@ -34,14 +48,54 @@ export function ReadmeStudio() {
     window.setTimeout(() => setCopied(false), 1600);
   }
 
-  function downloadReadme() {
-    const blob = new Blob([readme], { type: "text/markdown;charset=utf-8" });
+  function downloadText(content: string, filename: string, type: string) {
+    const blob = new Blob([content], { type });
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
-    link.download = "README.md";
+    link.download = filename;
     link.click();
     URL.revokeObjectURL(url);
+  }
+
+  function downloadReadme() {
+    downloadText(readme, "README.md", "text/markdown;charset=utf-8");
+  }
+
+  function exportPreset() {
+    try {
+      const preset = serializePreset(templateId, bilingual, form);
+      downloadText(preset, "readme-studio-preset.json", "application/json;charset=utf-8");
+      setPresetMessage({ kind: "success", text: "Preset saved locally." });
+    } catch (error) {
+      setPresetMessage({
+        kind: "error",
+        text: error instanceof PresetError ? error.message : "Could not save this preset.",
+      });
+    }
+  }
+
+  async function importPreset(event: ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0];
+    event.target.value = "";
+    if (!file) return;
+
+    try {
+      if (file.size > MAX_PRESET_BYTES) {
+        throw new PresetError("Preset is too large. Keep preset files under 64 KiB.");
+      }
+      const preset = parsePreset(await file.text());
+      setTemplateId(preset.templateId);
+      setForm(preset.form);
+      setBilingual(preset.bilingual);
+      setCopied(false);
+      setPresetMessage({ kind: "success", text: "Preset loaded from this device." });
+    } catch (error) {
+      setPresetMessage({
+        kind: "error",
+        text: error instanceof PresetError ? error.message : "Could not load this preset.",
+      });
+    }
   }
 
   return (
@@ -90,6 +144,26 @@ export function ReadmeStudio() {
               ))}
             </select>
             <p>{templates[templateId].description}</p>
+          </div>
+
+          <div className="template-picker" aria-label="Local preset controls">
+            <strong>Local preset</strong>
+            <p>Save or restore these project details without an account or server storage.</p>
+            <button type="button" className="text-button" onClick={exportPreset}>Save preset</button>
+            <button type="button" className="text-button" onClick={() => presetInput.current?.click()}>
+              Load preset
+            </button>
+            <input
+              ref={presetInput}
+              hidden
+              type="file"
+              accept="application/json,.json"
+              onChange={importPreset}
+              aria-label="Choose a README Studio preset file"
+            />
+            {presetMessage ? (
+              <p className={presetMessage.kind} role="status">{presetMessage.text}</p>
+            ) : null}
           </div>
 
           <div className="field-grid">

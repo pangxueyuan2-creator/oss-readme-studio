@@ -12,6 +12,7 @@ Everything runs in the browser. Nothing is uploaded.
 
 - Live Markdown preview
 - Presets for common project types
+- Save and restore reusable [local preset files](docs/PRESETS.md)
 - Optional English + Chinese output
 - Local quality score for missing sections
 - Can also audit an existing README via CLI or GitHub Action

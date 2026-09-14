@@ -25,6 +25,9 @@ test("server-renders the finished README Studio experience", async () => {
   assert.match(html, /Project details/);
   assert.match(html, /Project template/);
   assert.match(html, /CLI tool/);
+  assert.match(html, /Local preset/);
+  assert.match(html, /Save preset/);
+  assert.match(html, /Load preset/);
   assert.match(html, /Live preview/);
   assert.match(html, /README readiness/);
   assert.match(html, /Copy Markdown/);
@@ -44,5 +47,7 @@ test("ships project metadata and the social preview asset", async () => {
   assert.match(layout, /summary_large_image/);
   assert.match(page, /ReadmeStudio/);
   assert.match(component, /analyzeReadme/);
+  assert.match(component, /serializePreset/);
+  assert.match(component, /parsePreset/);
   assert.doesNotMatch(packageJson, /react-loading-skeleton/);
 });
